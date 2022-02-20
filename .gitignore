@@ -1,0 +1,25 @@
+# macOS hidden file
+.DS_Store
+
+# Environment file for Supertest
+.env
+
+# Karate related
+karate-config.js
+karate.log
+karate-reports_*/
+
+# Intellij files
+.idea/
+
+# Dependency directories
+node_modules/
+
+# Cypress
+cypress.json
+
+# Selenium & Cucumber Java
+config.properties
+
+# Maven
+test-classes/
