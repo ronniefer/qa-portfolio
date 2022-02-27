@@ -54,3 +54,6 @@ Feature: Watt Time Grid Emissions API
       |    ba_in    | lat    | long    |  style   |   ba_out  |
       | 'ISONE_WCMA'|  null  |   null  |   null   | ISONE_WCMA|
       | 'ISONE_WCMA'|  null  |   null  | 'percent'| ISONE_WCMA|
+      |     null    | 42.372 | -72.519 | 'percent'| ISONE_WCMA|
+      |     null    | 42.372 | -72.519 |   null   | ISONE_WCMA|
+      |     null    | 42.372 | -72.519 |  'all'   | ISONE_WCMA|
