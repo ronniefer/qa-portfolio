@@ -57,3 +57,17 @@ Feature: Watt Time Grid Emissions API
       |     null    | 42.372 | -72.519 | 'percent'| ISONE_WCMA|
       |     null    | 42.372 | -72.519 |   null   | ISONE_WCMA|
       |     null    | 42.372 | -72.519 |  'all'   | ISONE_WCMA|
+
+  Scenario Outline: Get Real-time Emissions Index - Error Handling
+    Given path 'index'
+    And params { ba: <ba>, latitude: <lat>, longitude: <long>, style: '<style>' }
+    When method get
+    Then assert responseStatus == <HTTP Status>
+    And match response.error == '<error text>'
+    And match response.message == '<error message>'
+
+    Examples:
+      |     ba     |  lat  |  long  |  style | HTTP Status|       error text        |     error message      |
+      |'ISONE_WCMA'| 42.372| -72.519| percent|     400    | Invalid query parameters| must provide ba OR latitude/longitude parameters|
+      |'ISONE_WCMA'|  null |  null  | xyz    |     400    | Invalid query parameters| Invalid style requested|
+      |'ISONE_WCMA'| 42.372|  null  | percent|     400    | Invalid query parameters| must provide ba OR latitude/longitude parameters|
