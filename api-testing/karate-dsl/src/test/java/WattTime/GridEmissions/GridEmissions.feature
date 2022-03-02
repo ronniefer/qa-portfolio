@@ -71,3 +71,5 @@ Feature: Watt Time Grid Emissions API
       |'ISONE_WCMA'| 42.372| -72.519| percent|     400    | Invalid query parameters| must provide ba OR latitude/longitude parameters|
       |'ISONE_WCMA'|  null |  null  | xyz    |     400    | Invalid query parameters| Invalid style requested|
       |'ISONE_WCMA'| 42.372|  null  | percent|     400    | Invalid query parameters| must provide ba OR latitude/longitude parameters|
+      |   null     |  null | -72.519| percent|     400    | Invalid query parameters| must provide ba OR latitude/longitude parameters|
+      |   null     |   0   |   0    | percent|     400    | Invalid query parameters| Could not locate a balancing authority corresponding to query parameters|
