@@ -74,3 +74,17 @@ Feature: Watt Time Grid Emissions API
       |   null     |  null | -72.519| percent|     400    | Invalid query parameters| must provide ba OR latitude/longitude parameters|
       |   null     |   0   |   0    | percent|     400    | Invalid query parameters| Could not locate a balancing authority corresponding to query parameters|
       |   'XYZ'    |  null |  null  | percent|     400    | Invalid query parameters| You requested data for an unrecognized ba|
+
+  Scenario Outline: Check Error Handling for Missing or Invalid Authorization
+    Given path '<path>'
+    And params { latitude: <lat>, longitude: <long> }
+    And configure headers = { Authorization: <auth> }
+    When method get
+    Then status <status>
+    And match response contains '<error message>'
+    And match responseHeaders['WWW-Authenticate'][0] == '<www-auth>'
+
+    Examples:
+      |    path    | lat    | long    | auth | status| error message          |          www-auth           |
+      | ba-from-loc| 35.294 |-120.652 | null | 401   | Authorization Required | Basic realm="login required"|
+      | ba-from-loc| 35.294 |-120.652 | 'xyz'| 403   | Forbidden              | #notpresent                 |
