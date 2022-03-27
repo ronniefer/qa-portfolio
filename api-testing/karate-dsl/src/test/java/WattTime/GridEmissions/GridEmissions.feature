@@ -88,3 +88,5 @@ Feature: Watt Time Grid Emissions API
       |    path    | lat    | long    | auth | status| error message          |          www-auth           |
       | ba-from-loc| 35.294 |-120.652 | null | 401   | Authorization Required | Basic realm="login required"|
       | ba-from-loc| 35.294 |-120.652 | 'xyz'| 403   | Forbidden              | #notpresent                 |
+      |    index   | 35.294 |-120.652 | null | 401   | Authorization Required | Basic realm="login required"|
+      |    index   | 35.294 |-120.652 | 'xyz'| 403   | Forbidden              | #notpresent                 |
