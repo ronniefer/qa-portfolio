@@ -1,0 +1,17 @@
+{
+  "name": "supertest-node",
+  "version": "1.0.0",
+  "description": "Test APIs using Mocha, Chai & Supertest",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Ronnie",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.6",
+    "dotenv": "^16.0.1",
+    "mocha": "^9.2.2",
+    "supertest": "^6.2.2"
+  }
+}
