@@ -61,3 +61,33 @@ describe('Determine Grid Region - Happy Path/s', function() {
         });
     });
 });
+
+describe('Determine Grid Region - Error Handling', function() {
+    let regions = [
+        { lat: 0,      long: 0,      status: 404, error: 'Coordinates not found', resplat: '0',      resplong: '0' },
+        { lat: 42.372, long: 'null', status: 400, error: 'Invalid coordinates',   resplat: '42.372', resplong: 'null' },
+        { lat: 'null', long:-72.519, status: 400, error: 'Invalid coordinates',   resplat: 'null',   resplong: '-72.519' },
+        { lat: 'ABC',  long: 'XYZ',  status: 400, error: 'Invalid coordinates',   resplat: 'ABC',    resplong: 'XYZ' }
+    ];
+
+    regions.forEach ( location => {
+        it(`For ${location['error']}/${location['resplat']}/${location['resplong']}`, function(done) {
+            request(url)
+            .get('/ba-from-loc')
+            //.auth(token, { type: 'bearer' })
+            .set('Authorization', 'Bearer ' + token)
+            .query({ 'latitude' : location['lat'], 'longitude' : location['long']})
+            .end(function(err, res){
+                expect(res.status).to.equal(location['status']);
+                expect(res.body.error).to.equal(location['error']);
+                expect(res.body.latitude).to.equal(location['resplat']);
+                expect(res.body.longitude).to.equal(location['resplong']);
+                
+                //console.log(JSON.stringify(res.request));
+                //console.log(JSON.stringify(res.body));
+                
+                done();
+            });
+        });
+    });
+});
