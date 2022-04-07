@@ -91,3 +91,34 @@ describe('Determine Grid Region - Error Handling', function() {
         });
     });
 });
+
+describe('Get Real-time Emissions Index - Happy Path/s', function() {
+    let regions = [
+        { query: 'ba=ISONE_WCMA',                                   ba_out: 'ISONE_WCMA'},
+        { query: 'ba=ISONE_WCMA&style=percent',                     ba_out: 'ISONE_WCMA'},
+        { query: 'latitude=42.372&longitude=-72.519&style=percent', ba_out: 'ISONE_WCMA'},
+        { query: 'latitude=42.372&longitude=-72.519',               ba_out: 'ISONE_WCMA'},
+        { query: 'latitude=42.372&longitude=-72.519&style=all',     ba_out: 'ISONE_WCMA'}
+    ];
+
+    regions.forEach ( location => {
+        it(`For ${location['query']}`, function(done) {
+            request(url)
+            .get('/index')
+            //.auth(token, { type: 'bearer' })
+            .set('Authorization', 'Bearer ' + token)
+            .query(location['query'])
+            .end(function(err, res){
+                expect(res.status).to.equal(200);
+                expect(res.body.ba).to.equal(location['ba_out']);
+                expect(res.body.freq).to.match(/^[0-9]{3}$/);
+                expect(res.body.percent).to.match(/^[0-9]{2}$/);
+                
+                //console.log(JSON.stringify(res.request));
+                //console.log(JSON.stringify(res.body));
+                
+                done();
+            });
+        });
+    });
+});
