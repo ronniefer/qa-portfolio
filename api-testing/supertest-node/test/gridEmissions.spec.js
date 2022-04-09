@@ -122,3 +122,35 @@ describe('Get Real-time Emissions Index - Happy Path/s', function() {
         });
     });
 });
+
+describe('Get Real-time Emissions Index - Error Handling', function() {
+    let regions = [
+        { query: 'ba=ISONE_WCMA&latitude=42.372&longitude=-72.519', style: 'percent', error_msg: 'must provide ba OR latitude/longitude parameters'},
+        { query: 'ba=ISONE_WCMA',                                   style: 'xyz',     error_msg: 'Invalid style requested'},
+        { query: 'ba=ISONE_WCMA&latitude=42.372',                   style: 'percent', error_msg: 'must provide ba OR latitude/longitude parameters'},
+        { query: 'longitude=-72.519',                               style: 'percent', error_msg: 'must provide ba OR latitude/longitude parameters'},
+        { query: 'latitude=0&longitude=0',                          style: 'percent', error_msg: 'Could not locate a balancing authority corresponding to query parameters'},
+        { query: 'ba=XYZ',                                          style: 'percent', error_msg: 'You requested data for an unrecognized ba'}
+    ];
+
+    regions.forEach ( location => {
+        it(`${location['error_msg']}`, function(done) {
+            request(url)
+            .get('/index')
+            //.auth(token, { type: 'bearer' })
+            .set('Authorization', 'Bearer ' + token)
+            .query(location['query'])
+            .query({ 'style' : location['style']})
+            .end(function(err, res){
+                expect(res.status).to.equal(400);
+                expect(res.body.error).to.equal('Invalid query parameters');
+                expect(res.body.message).to.equal(location['error_msg']);
+                
+                //console.log(JSON.stringify(res.request));
+                //console.log(JSON.stringify(res.body));
+                
+                done();
+            });
+        });
+    });
+});
