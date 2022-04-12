@@ -154,3 +154,30 @@ describe('Get Real-time Emissions Index - Error Handling', function() {
         });
     });
 });
+
+describe('Check Error Handling for Missing Authorization', function() {
+    let regions = [
+        { path: 'ba-from-loc', lat: 35.294, long: -120.652,  status: 401, error_msg: 'Authorization Required'},
+        { path: 'index',       lat: 35.294, long: -120.652,  status: 401, error_msg: 'Authorization Required'}
+    ];
+
+    regions.forEach ( location => {
+        it(`${location['error_msg']}`, function(done) {
+            request(url)
+            .get(`/${location['path']}`)
+
+            .query({ 'latitude' : location['lat'], 'longitude' : location['long']})
+            .end(function(err, res){
+                expect(res.status).to.equal(location['status']);
+                expect(res.text).contains(location['error_msg']);
+                expect(res.headers['www-authenticate']).to.equal('Basic realm="login required"');
+                
+                //console.log(JSON.stringify(res.request));
+                //console.log(JSON.stringify(res.body));
+                //console.log(res.request);
+                
+                done();
+            });
+        });
+    });
+});
