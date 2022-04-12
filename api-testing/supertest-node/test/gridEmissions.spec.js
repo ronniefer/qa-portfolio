@@ -181,3 +181,30 @@ describe('Check Error Handling for Missing Authorization', function() {
         });
     });
 });
+
+describe('Check Error Handling for Invalid Authorization', function() {
+    let regions = [
+        { path: 'ba-from-loc', lat: 35.294, long: -120.652,  auth: 'null', status: 403, error_msg: 'Forbidden'},
+        { path: 'index',       lat: 35.294, long: -120.652,  auth: 'null', status: 403, error_msg: 'Forbidden'}
+    ];
+
+    regions.forEach ( location => {
+        it(`${location['error_msg']}`, function(done) {
+            request(url)
+            .get(`/${location['path']}`)
+            .set('Authorization', 'xyz')
+            .query({ 'latitude' : location['lat'], 'longitude' : location['long']})
+            .end(function(err, res){
+                expect(res.status).to.equal(location['status']);
+                expect(res.text).contains(location['error_msg']);
+                expect(res.headers['www-authenticate']).to.be.undefined;
+                
+                //console.log(JSON.stringify(res.request));
+                //console.log(JSON.stringify(res));
+                //console.log(res.request);
+                
+                done();
+            });
+        });
+    });
+});
