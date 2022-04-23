@@ -87,6 +87,53 @@ public class PageObjectWebTest {
         checkoutPage.goBackHome();
     }
 
+    @Test
+    @Order(1)
+    public void loginToSauceDemo() {
+        loginPage = new SauceDemoLoginPage(driver);
+        loginPage.loadPage();
+        loginPage.enterCredentials(configUser, configPass);
+        loginPage.clickLoginButton();
+
+        productsPage = new SauceDemoProductsPage(driver);
+        assertEquals("PRODUCTS", productsPage.getHeaderText(), "Title text is incorrect");
+    }
+
+    @Test
+    @Order(2)
+    public void shopThenOpenShoppingCart() {
+        loginPage = new SauceDemoLoginPage(driver);
+        loginPage.loadPage();
+        loginPage.enterCredentials(configUser, configPass);
+        loginPage.clickLoginButton();
+
+        productsPage = new SauceDemoProductsPage(driver);
+        productsPage.addItemToCart("backpack");
+        productsPage.addItemToCart("onesie");
+        productsPage.goToShoppingCart();
+
+        shoppingCartPage = new SauceDemoCartPage(driver);
+        assertEquals("YOUR CART", shoppingCartPage.getHeaderText(), "Title text is incorrect");
+    }
+
+    @Test
+    @Order(3)
+    public void verifyShoppingCartAdditions() {
+        loginPage = new SauceDemoLoginPage(driver);
+        loginPage.loadPage();
+        loginPage.enterCredentials(configUser, configPass);
+        loginPage.clickLoginButton();
+
+        productsPage = new SauceDemoProductsPage(driver);
+        productsPage.addItemToCart("backpack");
+        productsPage.addItemToCart("onesie");
+        productsPage.goToShoppingCart();
+
+        shoppingCartPage = new SauceDemoCartPage(driver);
+        assertTrue(shoppingCartPage.confirmAdditionToCart("backpack"));
+        assertTrue(shoppingCartPage.confirmAdditionToCart("onesie"));
+    }
+
     @AfterEach
     public void quitWebDriver() {
         driver.quit();
