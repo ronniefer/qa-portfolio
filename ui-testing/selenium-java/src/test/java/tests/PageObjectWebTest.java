@@ -134,6 +134,51 @@ public class PageObjectWebTest {
         assertTrue(shoppingCartPage.confirmAdditionToCart("onesie"));
     }
 
+    @Test
+    @Order(4)
+    public void verifyShoppingCartRemovals() {
+        loginPage = new SauceDemoLoginPage(driver);
+        loginPage.loadPage();
+        loginPage.enterCredentials(configUser, configPass);
+        loginPage.clickLoginButton();
+
+        productsPage = new SauceDemoProductsPage(driver);
+        productsPage.addItemToCart("backpack");
+        productsPage.addItemToCart("onesie");
+        productsPage.goToShoppingCart();
+
+        shoppingCartPage = new SauceDemoCartPage(driver);
+        shoppingCartPage.removeItemFromCart("backpack");
+        assertTrue(shoppingCartPage.confirmRemovalFromCart("backpack"));
+        shoppingCartPage.checkout();
+    }
+
+    @Test
+    @Order(5)
+    public void completeCheckoutProcess() {
+        loginPage = new SauceDemoLoginPage(driver);
+        loginPage.loadPage();
+        loginPage.enterCredentials(configUser, configPass);
+        loginPage.clickLoginButton();
+
+        productsPage = new SauceDemoProductsPage(driver);
+        productsPage.addItemToCart("backpack");
+        productsPage.addItemToCart("onesie");
+        productsPage.goToShoppingCart();
+
+        shoppingCartPage = new SauceDemoCartPage(driver);
+        shoppingCartPage.removeItemFromCart("backpack");
+        shoppingCartPage.checkout();
+
+        checkoutPage = new SauceDemoCheckoutPage(driver);
+        assertEquals("CHECKOUT: YOUR INFORMATION", shoppingCartPage.getHeaderText(), "Title text is incorrect");
+        checkoutPage.enterInfo("John","Smith", "78701");
+        assertEquals("CHECKOUT: OVERVIEW", shoppingCartPage.getHeaderText(), "Title text is incorrect");
+        checkoutPage.finishCheckout();
+        assertEquals("CHECKOUT: COMPLETE!", shoppingCartPage.getHeaderText(), "Title text is incorrect");
+        checkoutPage.goBackHome();
+    }
+
     @AfterEach
     public void quitWebDriver() {
         driver.quit();
