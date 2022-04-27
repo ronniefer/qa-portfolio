@@ -17,4 +17,15 @@ public class SauceDemoLoginPage extends AbstractPage {
     public void loadPage() {
         getDriver().get("https://www.saucedemo.com");
     }
+
+    public void enterCredentials(String username, String password) {
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(usernameInput));
+        getDriver().findElement(usernameInput).sendKeys(username);
+        getDriver().findElement(passwordInput).sendKeys(password);
+    }
+
+    public void clickLoginButton() {
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(loginButton));
+        getDriver().findElement(loginButton).click();
+    }
 }
