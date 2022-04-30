@@ -17,4 +17,15 @@ public class SauceDemoProductsPage extends AbstractPage {
         getWait().until(ExpectedConditions.visibilityOfElementLocated(pageHeader));
         return getDriver().findElement(pageHeader).getText();
     }
+
+    public void addItemToCart(String item) {
+        By addToCart = By.id("add-to-cart-sauce-labs-" + item);
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(addToCart));
+        getDriver().findElement(addToCart).click();
+    }
+
+    public void goToShoppingCart() {
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(shoppingCart));
+        getDriver().findElement(shoppingCart).click();
+    }
 }
