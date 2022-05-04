@@ -29,4 +29,26 @@ public class SauceDemoCartPage extends AbstractPage {
             return false;
         }
     }
+
+    public void removeItemFromCart(String item) {
+        By removeFromCart = By.id("remove-sauce-labs-" + item);
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(removeFromCart));
+        getDriver().findElement(removeFromCart).click();
+    }
+
+    public boolean confirmRemovalFromCart(String item) {
+        By removeFromCart = By.id("remove-sauce-labs-" + item);
+        try {
+            getWait().until(ExpectedConditions.invisibilityOfElementLocated(removeFromCart));
+            return true;
+        }
+        catch(Exception e) {
+            return false;
+        }
+    }
+
+    public void checkout() {
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(checkout));
+        getDriver().findElement(checkout).click();
+    }
 }
