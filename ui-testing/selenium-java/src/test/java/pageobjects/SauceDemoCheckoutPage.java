@@ -30,4 +30,14 @@ public class SauceDemoCheckoutPage extends AbstractPage {
         getDriver().findElement(zipcodeInput).sendKeys(zipcode);
         getDriver().findElement(continueButton).click();
     }
+
+    public void finishCheckout() {
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(finishButton));
+        getDriver().findElement(finishButton).click();
+    }
+
+    public void goBackHome() {
+        getWait().until(ExpectedConditions.visibilityOfElementLocated(homeButton));
+        getDriver().findElement(homeButton).click();
+    }
 }
