@@ -1,0 +1,8 @@
+{
+    "watchForFileChanges": false,
+    "chromeWebSecurity": false,
+    "env": {
+        "UI_USER": "your_ui_username_here",
+        "UI_PASS": "your_ui_password_here"
+    }
+}
