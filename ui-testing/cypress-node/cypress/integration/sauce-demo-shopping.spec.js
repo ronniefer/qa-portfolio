@@ -58,5 +58,54 @@ describe('Online Shopping via Sauce Demo Site', () => {
         productsPage.goToShoppingCart()
 
         shoppingCartPage.getHeaderText().should('have.text','Your Cart')
+    })
+
+    it('should verify shopping cart additions', () => {
+        loginPage.loadPage()
+        loginPage.enterCredentials('standard_user', 'secret_sauce')
+        loginPage.clickLoginButton()
+
+        productsPage.addItemToCart('backpack')
+        productsPage.addItemToCart('onesie')
+        productsPage.goToShoppingCart()
+
+        shoppingCartPage.confirmAdditionToCart('backpack').should('be.visible')
+        shoppingCartPage.confirmAdditionToCart('onesie').should('be.visible')
+    })
+
+    it('should verify shopping cart removals', () => {
+        loginPage.loadPage()
+        loginPage.enterCredentials('standard_user', 'secret_sauce')
+        loginPage.clickLoginButton()
+
+        productsPage.addItemToCart('backpack')
+        productsPage.addItemToCart('onesie')
+        productsPage.goToShoppingCart()
+
+        shoppingCartPage.removeItemFromCart('backpack')
+        shoppingCartPage.confirmRemovalFromCart('backpack').should('not.be.visible')
+        shoppingCartPage.checkout()      
+    })
+
+    it('should complete checkout process', () => {
+        loginPage.loadPage()
+        loginPage.enterCredentials('standard_user', 'secret_sauce')
+        loginPage.clickLoginButton()
+
+        productsPage.addItemToCart('backpack')
+        productsPage.addItemToCart('onesie')
+        productsPage.goToShoppingCart()
+
+        shoppingCartPage.removeItemFromCart('backpack')
+        shoppingCartPage.confirmRemovalFromCart('backpack').should('not.be.visible')
+        shoppingCartPage.checkout()
+
+        checkoutPage.getHeaderText().should('have.text','Checkout: Your Information')
+        checkoutPage.enterInfo('John', 'Smith', '78701')
+        checkoutPage.getHeaderText().should('have.text','Checkout: Overview')
+        checkoutPage.finishCheckout()
+        checkoutPage.getHeaderText().should('have.text','Checkout: Complete!')
+        checkoutPage.goBackHome()        
+    })
 
 })
