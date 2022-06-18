@@ -9,4 +9,9 @@ export class SauceDemoProductsPage {
         cy.get(`#add-to-cart-sauce-labs-${item}`).should('be.visible')
             .click()
     }
+
+    goToShoppingCart() {
+        cy.get('.shopping_cart_link').should('be.visible')
+            .click() 
+    }
 }
