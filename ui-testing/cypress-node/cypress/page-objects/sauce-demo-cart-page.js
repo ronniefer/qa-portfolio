@@ -13,4 +13,13 @@ export class SauceDemoCartPage {
         cy.get(`#remove-sauce-labs-${item}`).should('be.visible')
             .click() 
     }
+
+    confirmRemovalFromCart(item) {
+        return cy.get(`#remove-sauce-labs-${item}`)
+    }
+
+    checkout() {
+        cy.get('#checkout').should('be.visible')
+            .click() 
+    }
 }
