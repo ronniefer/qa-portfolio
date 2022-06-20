@@ -16,4 +16,14 @@ export class SauceDemoCheckoutPage {
         cy.get('#continue')
             .click()   
     }
+
+    finishCheckout() {
+        cy.get('#finish').should('be.visible')
+            .click()
+    }
+
+    goBackHome() {
+        cy.get('#back-to-products').should('be.visible')
+            .click()
+    }
 }
