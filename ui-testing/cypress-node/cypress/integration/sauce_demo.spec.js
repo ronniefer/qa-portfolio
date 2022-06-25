@@ -3,8 +3,8 @@
 it('should navigate and shop the Sauce Demo site', () => {
     cy.visit('https://www.saucedemo.com/')
     
-    cy.get('#user-name').type('standard_user')
-    cy.get('#password').type('secret_sauce')
+    cy.get('#user-name').type(Cypress.env('UI_USER'))
+    cy.get('#password').type(Cypress.env('UI_PASS'))
     cy.get('#login-button').click()
 
     cy.get('.title').should('have.text','Products') 
