@@ -1,7 +1,7 @@
 
 # API Testing with SuperTest
 
-> This is an example Test Suite for testing API endpoints using the **SuperTest** automation framework.
+> This Test Suite illustrates how to test API endpoints using the [**SuperTest**](https://github.com/visionmedia/supertest) automation framework.
 > 
 > Shortcut to spec file:
 > * [gridEmissions.spec.js](./test/gridEmissions.spec.js)
@@ -27,6 +27,7 @@
 - Why use this particular API?
   - It's publicly available
   - Self-registration is quick & easy
+  - Requires Authentication & Authorization (a common API use-case)
   - Well documented
   - Stable
 
@@ -38,6 +39,7 @@
 - npm
 - Mocha
 - Chai
+- SuperTest
 
 
 ## Features
@@ -60,7 +62,7 @@
 1. Clone repository
 2. Install VS Code
 3. Initiate `npm install` to pick up `package.json` dependencies and install them
-_(This is necessary as node_modules are excluded from version control)_
+    _(This is necessary as node_modules are excluded from version control)_
 4. Self register for [WattTime API access](https://www.watttime.org/api-documentation/#register-new-user)
 
 
