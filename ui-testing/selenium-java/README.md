@@ -11,8 +11,7 @@
 > * [SauceDemoCartPage.java](./src/test/java/pageobjects/SauceDemoCartPage.java)
 > * [SauceDemoCheckoutPage.java](./src/test/java/pageobjects/SauceDemoCheckoutPage.java)
 > 
-> _For the **Cucumber-JVM** version of these tests, click_ [_here_](../cucumber-jvm). 
-> _For the **Cypress** version of these tests, click_ [_here_](../cypress-node). 
+> _For the **Cucumber-JVM** version of these tests, click_ [_here_](../cucumber-jvm). <br> _For the **Cypress** version of these tests, click_ [_here_](../cypress-node). 
 
 ## Table of Contents
 * [General Info](#general-information)
