@@ -1,12 +1,12 @@
 # API Testing with Karate DSL
 
-> This is an example Test Suite for testing API endpoints using the Karate test automation framework.
+> This Test Suite illustrates how to test API endpoints using the [**Karate**](https://github.com/karatelabs/karate) test automation framework.
 > 
 > Shortcut to feature files:
 > * [BearerToken.feature](./src/test/java/WattTime/GridEmissions/BearerToken.feature)
 > * [GridEmissions.feature](./src/test/java/WattTime/GridEmissions/GridEmissions.feature)
 > 
-> _For the **SuperTest** version of these tests, written in Javascript, click_ [_here_](../supertest-node). 
+> _For the **SuperTest** (i.e. JavaScript) version of these tests, click_ [_here_](../supertest-node). 
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -27,6 +27,7 @@
 - Why use this particular API?
   - It's publicly available
   - Self-registration is quick & easy
+  - Requires Authentication & Authorization (a common API use-case)
   - Well documented
   - Stable
 
