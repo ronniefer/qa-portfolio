@@ -61,8 +61,7 @@
 ## Setup
 1. Clone repository
 2. Install VS Code
-3. Initiate `npm install` to pick up `package.json` dependencies and install them
-    _(This is necessary as node_modules are excluded from version control)_
+3. Initiate `npm install` to pick up `package.json` dependencies and install them <br> _(This is necessary as node_modules are excluded from version control)_
 4. Self register for [WattTime API access](https://www.watttime.org/api-documentation/#register-new-user)
 
 
