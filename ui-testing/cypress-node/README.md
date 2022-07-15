@@ -44,6 +44,7 @@
 ## Technologies Used
 - macOS
 - VS Code
+- Cypress
 - Node.js
 - npm
 - Mocha
