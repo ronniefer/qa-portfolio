@@ -4,7 +4,7 @@
 > This Test Suite illustrates how to test a website User Interface using the [**Cucumber-JVM**](https://cucumber.io/docs/installation/java/) browser automation framework.
 > 
 > Shortcut to Cucumber feature file:
-> * [SauceDemoShopping.feature](./src/test/java/resources/SauceDemoShopping.feature)
+> * [SauceDemoShopping.feature](./src/test/resources/SauceDemoShopping.feature)
 > 
 > Shortcut to Step Definitions file:
 > * [DemoDefinitions.java](./src/test/java/stepdefs/DemoDefinitions.java)
