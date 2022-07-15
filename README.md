@@ -11,16 +11,16 @@
 ## UI Testing with [_Cypress_](./ui-testing/cypress-node)
 
 ### `Karate`
-![Karate Test Results](./api-testing/karate-dsl/screenshot20220623_karate-dsl.png)
+<img src="./api-testing/karate-dsl/screenshot20220623_karate-dsl.png" alt="Karate Test Results" width="250"/>
 
 ### `SuperTest`
-![SuperTest Test Results](./api-testing/supertest-node/screenshot20220623_supertest-node.png)
+<img src="./api-testing/supertest-node/screenshot20220623_supertest-node.png" alt="SuperTest Test Results" width="250"/>
 
 ### `Selenium Java`
-![Selenium Java Test Results](./ui-testing/selenium-java/screenshot20220623_selenium-java.png)
+<img src="./ui-testing/selenium-java/screenshot20220623_selenium-java.png" alt="Selenium Java Test Results" width="250"/>
 
 ### `Cucumber Java`
-![Cucumber Java Test Results](./ui-testing/cucumber-java/screenshot20220623_cucumber-java.png)
+<img src="./ui-testing/cucumber-java/screenshot20220623_cucumber-java.png" alt="Cucumber Java Test Results" width="250"/>
 
 ### `Cypress`
-![Cypress Test Results](./ui-testing/cypress-node/screenshot20220623_cypress-node.png)
+<img src="./ui-testing/cypress-node/screenshot20220623_cypress-node.png" alt="Cypress Test Results" width="250"/>
